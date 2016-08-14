@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -23,8 +20,6 @@ public class BuildAssist  extends JavaPlugin {
 	private List<BukkitTask> tasklist = new ArrayList<BukkitTask>();
 	//Playerdataに依存するデータリスト
 	public static final HashMap<UUID,PlayerData> playermap = new HashMap<UUID,PlayerData>();
-
-	private HashMap<String, TabExecutor> commandlist;
 
 	//lvの閾値
 	public static final List<Integer> levellist = new ArrayList<Integer>(Arrays.asList(
@@ -78,15 +73,8 @@ public class BuildAssist  extends JavaPlugin {
 	@Override
 	public void onEnable(){
 		plugin = this;
-
-		//コマンドの登録
-		commandlist = new HashMap<String, TabExecutor>();
-		commandlist.put("fly",new flyCommand(plugin));
-
 		//リスナの登録
 		getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-		getServer().getPluginManager().registerEvents(new EntityListener(), this);
-
 
 
 		//オンラインの全てのプレイヤーを処理
@@ -117,9 +105,5 @@ public class BuildAssist  extends JavaPlugin {
 		for(BukkitTask task:tasklist){
 			task.cancel();
 		}
-	}
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		return commandlist.get(cmd.getName()).onCommand(sender, cmd, label, args);
 	}
 }
