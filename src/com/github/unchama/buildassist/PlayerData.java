@@ -17,6 +17,10 @@ public class PlayerData {
 	public UUID uuid;
 	//プレイヤーの建築レベル
 	public int level;
+	//フライフラグ
+	public boolean flyflag;
+	//フライタイム
+	public int flytime;
 
 
 //プレイヤーデータクラスのコンストラクタ
