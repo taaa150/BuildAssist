@@ -31,7 +31,7 @@ public class PlayerJoinListener implements Listener {
 			playerdata = playermap.get(uuid);
 		}
 		//統計量を取得
-		int mines = BuildBlock.calcBuildBlock(player);
-		playerdata.levelupdata(player,mines);
+		int builds = BuildBlock.calcBuildBlock(player);
+		playerdata.levelupdata(player,builds);
 	}
 }

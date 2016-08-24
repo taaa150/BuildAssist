@@ -29,9 +29,9 @@ public class MinuteTaskRunnable extends BukkitRunnable{
 			//プレイヤーを取得
 			Player player = plugin.getServer().getPlayer(playerdata.uuid);
 			//統計量計算
-			int mines = BuildBlock.calcBuildBlock(player);
+			int builds = BuildBlock.calcBuildBlock(player);
 			//Levelを設定
-			playerdata.levelupdata(player,mines);
+			playerdata.levelupdata(player,builds);
 		}
 	}
 

@@ -23,50 +23,44 @@ public class BuildAssist  extends JavaPlugin {
 
 	//lvの閾値
 	public static final List<Integer> levellist = new ArrayList<Integer>(Arrays.asList(
-			0,15,49,106,198,//5
-			333,705,1265,2105,3347,//10
-			4589,5831,7073,8315,9557,//15
-			11047,12835,14980,17554,20642,//20
-			24347,28793,34128,40530,48212,//25
-			57430,68491,81764,97691,116803,//30
-			135915,155027,174139,193251,212363,//35
-			235297,262817,295841,335469,383022,//40
-			434379,489844,549746,614440,684309,//45
-			759767,841261,929274,1024328,1126986,//50
-
-			/*
-			新経験値テーブル
-			51-60→125,000
-			61-70→175,000
-			71-80→250,000
-			81-90→330,000
-			91-100→420,000
-			これで51-100の累計が1300万
-			(毎日14.5万掘り続けて3か月ペース)
-			(毎日21.5万掘り続けて2か月ペース)
-			(毎日43.3万掘り続けて1か月ペース)
-			 */
-
-			1237856,1362856,1487856,1612856,1737856,//55
-			1862856,1987856,2112856,2237856,2362856,//60
-			2537856,2712856,2887856,3062856,3237856,//65
-			3412856,3587856,3762856,3937856,4112856,//70
-			4362856,4612856,4862856,5112856,5362856,//75
-			5612856,5862856,6112856,6362856,6612856,//80
-			6942856,7272856,7602856,7932856,8262856,//85
-			8592856,8922856,9252856,9582856,9912856,//90
-			10332856,10752856,11172856,11592856,12012856,//95
-			12432856,12852856,13272856,13692856,14112856//100
+			0,15,50,100,175,//5
+			300,450,650,900,1200,//10
+			1600,2100,2700,3400,4200,//15
+			5100,6100,7500,9000,10500,//20
+			12000,14000,16000,18000,20000,//25
+			25000,30000,35000,40000,50000//30
 			));
 
 	//設置ブロックの対象リスト
 	public static final List<Material> materiallist = new ArrayList<Material>(Arrays.asList(
-			Material.STONE,Material.NETHERRACK,Material.NETHER_BRICK,Material.DIRT
-			,Material.GRAVEL,Material.LOG,Material.LOG_2,Material.GRASS
-			,Material.COAL_ORE,Material.IRON_ORE,Material.GOLD_ORE,Material.DIAMOND_ORE
-			,Material.LAPIS_ORE,Material.EMERALD_ORE,Material.REDSTONE_ORE,Material.SAND
-			,Material.SANDSTONE,Material.QUARTZ_ORE,Material.END_BRICKS,Material.ENDER_STONE
-			,Material.ICE,Material.PACKED_ICE,Material.OBSIDIAN,Material.MAGMA,Material.SOUL_SAND
+			Material.ACACIA_STAIRS,Material.ACACIA_FENCE,Material.ACACIA_FENCE_GATE,
+			Material.BIRCH_WOOD_STAIRS,Material.BIRCH_FENCE,Material.BIRCH_FENCE_GATE,
+			Material.BONE_BLOCK,Material.BOOKSHELF,
+			Material.BRICK,Material.BRICK_STAIRS,
+			Material.CACTUS,Material.CHEST,
+			Material.CLAY_BRICK,
+			Material.DARK_OAK_STAIRS,Material.DARK_OAK_FENCE,Material.DARK_OAK_FENCE_GATE,
+			Material.END_BRICKS,
+			Material.FURNACE,Material.GLOWSTONE,Material.HARD_CLAY,
+			Material.JACK_O_LANTERN,Material.JUKEBOX,Material.JUNGLE_FENCE,Material.JUNGLE_FENCE_GATE,
+			Material.JUNGLE_WOOD_STAIRS,Material.LADDER,Material.LEAVES,Material.LEAVES_2,
+			Material.LOG,Material.LOG_2,Material.NETHER_BRICK,Material.NETHER_BRICK_STAIRS,
+			Material.NETHER_WART_BLOCK,Material.RED_NETHER_BRICK,
+			Material.OBSIDIAN,Material.PACKED_ICE,Material.PRISMARINE,
+			Material.PUMPKIN,Material.PURPUR_BLOCK,Material.PURPUR_SLAB,
+			Material.PURPUR_STAIRS,Material.PURPUR_PILLAR,
+			Material.QUARTZ_BLOCK,Material.QUARTZ_STAIRS,Material.QUARTZ,
+			Material.SANDSTONE,Material.SANDSTONE_STAIRS,Material.SEA_LANTERN,
+			Material.SLIME_BLOCK,Material.SMOOTH_BRICK,Material.SMOOTH_STAIRS,
+			Material.SNOW_BLOCK,Material.SPRUCE_FENCE,Material.SPRUCE_FENCE_GATE,
+			Material.SPRUCE_WOOD_STAIRS,Material.FENCE,Material.FENCE_GATE,
+			Material.STAINED_CLAY,Material.STAINED_GLASS,Material.STAINED_GLASS_PANE,
+			Material.STEP,Material.STONE,Material.STONE_SLAB2,Material.THIN_GLASS,
+			Material.TORCH,Material.WOOD,
+			Material.WOOD_STAIRS,Material.WOOD_STEP,
+			Material.WOOL,Material.CARPET,Material.WORKBENCH
+
+
 			));
 
 	//プラグインを起動したときに処理するメソッド
@@ -84,8 +78,8 @@ public class BuildAssist  extends JavaPlugin {
 			//プレイヤーデータを生成
 			PlayerData playerdata = new PlayerData(p);
 			//統計量を取得
-			int mines = BuildBlock.calcBuildBlock(p);
-			playerdata.levelupdata(p,mines);
+			int builds = BuildBlock.calcBuildBlock(p);
+			playerdata.levelupdata(p,builds);
 			//プレイヤーマップにプレイヤーを追加
 			playermap.put(uuid,playerdata);
 		}

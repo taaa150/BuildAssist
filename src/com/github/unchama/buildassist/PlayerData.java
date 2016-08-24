@@ -3,7 +3,6 @@ package com.github.unchama.buildassist;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 
@@ -26,22 +25,20 @@ public class PlayerData {
 		uuid = player.getUniqueId();
 	}
 	//レベルを更新
-	public void levelupdata(Player player,int mines) {
-		calcPlayerLevel(player,mines);
+	public void levelupdata(Player player,int builds) {
+		calcPlayerLevel(player,builds);
 		setDisplayName(player);
 	}
 
 	//プレイヤーレベルを計算し、更新する。
-	private void calcPlayerLevel(Player player,int mines){
+	private void calcPlayerLevel(Player player,int builds){
 		//現在のランクの次を取得
 		int i = level + 1;
 		//ランクが上がらなくなるまで処理
-		while(BuildAssist.levellist.get(i).intValue() <= mines && i <= 101){
+		while(BuildAssist.levellist.get(i).intValue() <= builds && i <= 30){
 			if(!BuildAssist.DEBUG){
 				//レベルアップ時のメッセージ
 				player.sendMessage(ChatColor.GOLD+"ﾑﾑｯwwwwwwwﾚﾍﾞﾙｱｯﾌﾟwwwwwww【Lv("+(i-1)+")→Lv("+i+")】");
-				//レベルアップ時の花火の打ち上げ
-				Location loc = player.getLocation();
 			}
 			i++;
 		}
@@ -55,11 +52,7 @@ public class PlayerData {
 			//管理人の場合
 			displayname = ChatColor.RED + "<管理人>" + name;
 		}
-		if(level == 101){
-			displayname =  ChatColor.GOLD + "[ GOD ]" + displayname + ChatColor.WHITE;
-		}else{
-			displayname =  "[ Lv" + level + " ]" + displayname + ChatColor.WHITE;
-		}
+			displayname =  "[ B-Lv" + level + " ]" + displayname + ChatColor.WHITE;
 
 		p.setDisplayName(displayname);
 		p.setPlayerListName(displayname);
